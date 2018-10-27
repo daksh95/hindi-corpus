@@ -8,22 +8,12 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 corpusdir = './data/' # Directory of corpus.
 
 def raw():
-    for _, dirs, _ in os.walk(corpusdir):
-        for dir in dirs:
-            for _, _, files in os.walk(corpusdir + dir):
-                for file in files:
-                    file_text = io.open(corpusdir + dir + "/" + file, "r", encoding="utf-8")
-                    print(file_text.read())
+    texts = []
+    for file in fileids():
+        file_text = io.open(corpusdir + file, "r", encoding="utf-8")
+        texts.append(file_text.read())
 
-def read(dir):
-    for _, _, files in os.walk(corpusdir + dir):
-        for file in files:
-            file_text = io.open(corpusdir + dir + "/" + file, "r", encoding="utf-8")
-            print(file_text.read())
-
-def topics(dir):
-    for _, _, files in os.walk(corpusdir + dir):
-        print(files)
+    return texts
 
 def fileids():
     files_ret = []
