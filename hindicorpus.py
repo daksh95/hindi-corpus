@@ -27,6 +27,24 @@ def fileids():
 
     return files_ret
 
+def tokenize():
+    token_list = []
+    for text in raw():
+        t = Tokenizer(text)
+        t.tokenize()
+        token_list.append(t.tokens)
+
+    return token_list
+
+def sent_tokenize():
+    token_list = []
+    for text in raw():
+        t = Tokenizer(text)
+        t.generate_sentences()
+        token_list.append(t.sentences)
+
+    return token_list
+
 
 
 
