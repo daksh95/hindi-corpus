@@ -61,13 +61,13 @@ def get_new_sentence_locations(filename):
     silence_timings = []
 
     for i in range(int(length)):
-    sample = speech[i*1000 : (i+1)*1000].get_array_of_samples()
-    sample = np.array(sample)
+        sample = speech[i*1000 : (i+1)*1000].get_array_of_samples()
+        sample = np.array(sample)
     
-    silence = ratio(sample) > 0.05
+        silence = ratio(sample) > 0.05
     
-    if silence:
-        silence_timings.append(i)  
+        if silence:
+            silence_timings.append(i)
 
     fullstop_timings = silence_timings
 
@@ -76,8 +76,8 @@ def get_new_sentence_locations(filename):
 
     for i in silence_timings[::-1]:
         for deviation in [1,2,3,4]:
-        if i-deviation in fullstop_timings:
-            fullstop_timings.remove(i-deviation)
+            if i-deviation in fullstop_timings:
+                fullstop_timings.remove(i-deviation)
     
     return fullstop_timings
 
