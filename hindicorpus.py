@@ -9,11 +9,16 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 corpusdir = './data/' # Directory of corpus.
 
-def raw():
+def raw(fileid = None):
     texts = []
-    for file in fileids():
-        file_text = io.open(corpusdir + file, "r", encoding="utf-8")
+
+    if fileid:
+        file_text = io.open(corpusdir + fileid, "r", encoding="utf-8")
         texts.append(file_text.read())
+    else:
+        for file in fileids():
+            file_text = io.open(corpusdir + file, "r", encoding="utf-8")
+            texts.append(file_text.read())
 
     return texts
 
@@ -29,18 +34,36 @@ def fileids():
 
     return files_ret
 
-def tokenize():
+def fileids_search(search_text):
+    files_ret = []
+    for dir in os.listdir(corpusdir):
+        try:
+            files = os.listdir(corpusdir + dir + "/")
+            for file in files:
+                file_text = io.open(corpusdir + dir + "/" + file, "r", encoding="utf-8")
+                if search_text in file_text.read():
+                    files_ret.append(dir + "/" + file)
+        except:
+            print("")
+
+    return files_ret
+
+def tokenize(fileid = None, remove_stopwords = False):
     token_list = []
-    for text in raw():
+    for text in raw(fileid):
         t = Tokenizer(text)
         t.tokenize()
-        token_list.append(t.tokens)
+        if remove_stopwords:
+            t.remove_stop_words()
+            token_list.append(t.final_tokens)
+        else:
+            token_list.append(t.tokens)
 
     return token_list
 
-def sent_tokenize():
+def sent_tokenize(fileid = None):
     token_list = []
-    for text in raw():
+    for text in raw(fileid):
         t = Tokenizer(text)
         t.generate_sentences()
         token_list.append(t.sentences)

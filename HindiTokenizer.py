@@ -208,7 +208,7 @@ if __name__ == "__main__":
     f = t.generate_freq_dict()
     t.print_freq_dict(f)
     s = t.concordance('बातों')
-    # t.print_sentences(s)
+    t.print_sentences(s)
     f = t.generate_stem_dict()
     # for i in f.keys():
     #   print i.encode('utf-8'),f[i].encode('utf-8')
