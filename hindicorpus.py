@@ -18,7 +18,11 @@ def raw(fileid = None):
     else:
         for file in fileids():
             file_text = io.open(corpusdir + file, "r", encoding="utf-8")
-            texts.append(file_text.read())
+
+            try:
+                texts.append(file_text.read())
+            except:
+                print("File encoding issue: " + file)
 
     return texts
 
@@ -28,7 +32,8 @@ def fileids():
         try:
             files = os.listdir(corpusdir + dir + "/")
             for file in files:
-                files_ret.append(dir + "/" + file)
+                if file.endswith('.txt'):
+                    files_ret.append(dir + "/" + file)
         except:
             print("")
 
