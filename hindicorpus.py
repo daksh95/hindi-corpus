@@ -84,7 +84,8 @@ def ratio(sample):
     return counter/len(sample)
 
 def get_new_sentence_locations(filename):
-    speech = AudioSegment.from_file(filename)
+    speech = AudioSegment.from_file(corpusdir+filename)
+    speech = speech - 3 #Reduce the gain  
     length = len(speech)/1000
     silence_timings = []
 
@@ -110,7 +111,7 @@ def get_new_sentence_locations(filename):
     return fullstop_timings
 
 def play(filename):
-    return AudioSegment.from_file(filename)
+    return AudioSegment.from_file(corpusdir+filename)
 
 #Sentences are 0 indexed
 def play_sentence(filename, sentence_number):
