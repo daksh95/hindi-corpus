@@ -112,3 +112,5 @@ modules.xml
 
 
 # End of https://www.gitignore.io/api/macos,pycharm+all
+
+__pycache__/
