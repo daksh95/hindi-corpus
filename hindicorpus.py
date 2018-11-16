@@ -1,11 +1,8 @@
-import pandas as pd
 import os
 import io
 from HindiTokenizer import Tokenizer
 from pydub import AudioSegment
 import numpy as np
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
 
 corpusdir = './data/' # Directory of corpus.
 

@@ -1,5 +1,4 @@
-import hindicorpus as hc
-import os
+from kush import reader as hc
 
 print("\n\nPrint all text available: ")
 print(hc.raw())
@@ -27,5 +26,3 @@ print(hc.sent_tokenize("Technology/Artificial Intelligence.txt"))
 
 print("\n\nSearch for files with keyword: ")
 print(hc.fileids_search("मशीनों"))
-
-hc.play("data/Psychology/Psychology.mp3")
